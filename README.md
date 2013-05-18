@@ -11,6 +11,18 @@ YouTube without having to deal with their app.
 The script is pretty simple and depends on `python3` and `youtube-dl`. I'll be
 expanding on these notes and adding features as I need them.
 
+## Usage
+
+By default, `tube2cast.sh` downloads a video, converts it to vorbis and serves
+the file at port 8000. If that's what you need, simply run
+
+    tube2cast.sh [link to YouTube video]
+
+To download [this video from YouTube][rickroll], have it converted to mp3 and
+served at port 8080, run:
+
+    tube2cast.sh -f mp3 -port 8080 http://www.youtube.com/watch?v=dQw4w9WgXcQ
+
 ## Troubleshooting
 
 * "`tube2cast.sh` is using the built-in options for port and filetype.
@@ -24,3 +36,5 @@ expanding on these notes and adding features as I need them.
   `awk` this from `ifconfig`, but not everybody uses the same interfaces.
 * Create install scripts and package for Arch Linux.
 * Enjoy the script.
+
+[rickroll]: http://www.youtube.com/watch?v=dQw4w9WgXcQ
