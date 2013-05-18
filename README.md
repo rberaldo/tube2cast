@@ -11,6 +11,13 @@ YouTube without having to deal with their app.
 The script is pretty simple and depends on `python3` and `youtube-dl`. I'll be
 expanding on these notes and adding features as I need them.
 
+## Troubleshooting
+
+* "`tube2cast.sh` is using the built-in options for port and filetype.
+  * You are probably giving the YouTube link before the options. Instead, run
+    `tube2cast.sh` like this: `tube2cast.sh [options] [link to YouTube video]`.
+
+
 ## TODO
 
 * Implement a way of showing your local IP, for convenience. I could `grep` and
