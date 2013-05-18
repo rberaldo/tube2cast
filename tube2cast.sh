@@ -20,7 +20,7 @@
 usage()
 {
   cat << EOF
-  usage: $0 [link to YouTube video] [options]
+  usage: $0 [options] [link to YouTube video] 
 
   This script downloads a video from YouTube, extracts the audio and then
   servers it on port 8000 by default.
@@ -32,13 +32,13 @@ usage()
    -p PORT      Specifies port on which the audio file will be served
 
   EXAMPLE:
-   $0 http://www.youtube.com/watch?v=dQw4w9WgXcQ -f ogg -p 8080
+   $0 http://www.youtube.com/watch?v=dQw4w9WgXcQ -f vorbis -p 8080
 
 EOF
 }
 
 # Initial variables
-YT_LINK=
+YT_LINK=$1
 PORT=8000
 FILETYPE="vorbis"
 
@@ -53,16 +53,18 @@ do
       ;;
     f)
       # Change filetype
-      FILETYPE=$OPTARG
+      FILETYPE="$OPTARG"
       ;;
     p)
       # Change default port
-      PORT=$OPTARG
+      PORT="$OPTARG"
       ;;
   esac
 done
+# Shift $OPTIND so that the link is in $1
+shift $(( OPTIND-1 ))
 
-# if user didn't specify a YouTube link, show usage
+# If user didn't specify a YouTube link, show usage
 if [ -z "$1" ]
 then
   usage
@@ -70,7 +72,7 @@ then
 else
   mkdir /tmp/tube2cast
 
-  # use youtube-dl to download the video and convert to audio. The -f options
+  # Use youtube-dl to download the video and convert to audio. The -f options
   # specifies lower, common formats to download. I don't want a 300mb file
   # downloading to my system. See
   # http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs for a table of
@@ -88,3 +90,4 @@ fi
 
 rm -rf /tmp/tube2cast/
 exit
+
